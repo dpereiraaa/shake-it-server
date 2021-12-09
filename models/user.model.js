@@ -5,8 +5,11 @@ const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  role: { type: String, enum: ["admin", "user"], default: "user" },
-  image: { type: String, default: "https://i.imgur.com/yWHfhiG.png" },
+  image: { type: String },
+  user_posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  favorite_drinks: [{ type: String }],
 });
 
-module.exports = model("User", userSchema);
+const User = model("User", userSchema);
+
+module.exports = User;

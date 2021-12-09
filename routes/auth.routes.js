@@ -101,7 +101,7 @@ router.post("/auth/login", async (req, res, next) => {
         email: foundUser.email,
         name: foundUser.name,
         role: foundUser.role, // 'admin' or 'user'
-        image: foundUser.image, 
+        image: foundUser.image,
       };
 
       // Create a JWT with the payload
