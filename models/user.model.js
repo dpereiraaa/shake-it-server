@@ -6,7 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   image: { type: String },
-  user_posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  user_posts: [{ type: Schema.Types.ObjectId, ref: "Feed" }],
   favorite_drinks: [{ type: String }],
 });
 

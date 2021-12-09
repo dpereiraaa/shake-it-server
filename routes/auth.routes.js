@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
-const { isAuthenticated, isAdmin } = require("./../middleware/jwt.middleware");
+const { isAuthenticated } = require("./../middleware/jwt.middleware");
 
 const saltRounds = 10;
 
@@ -100,7 +100,6 @@ router.post("/auth/login", async (req, res, next) => {
         _id: foundUser._id,
         email: foundUser.email,
         name: foundUser.name,
-        role: foundUser.role, // 'admin' or 'user'
         image: foundUser.image,
       };
 
