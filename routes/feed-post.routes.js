@@ -5,15 +5,15 @@ const Feed = require("../models/feed-post.model");
 
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 
-router.post("/api/create-post", async (req, res, next) => {
+router.post("/api/create-post", isAuthenticated, async (req, res, next) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, picture } = req.body;
     // const cloudinaryFile = req.file.path;
 
     const post = await Feed.create({
       title,
       description,
-      // picture: cloudinaryFile,
+      picture,
       post_author: req.payload._id,
     });
     await User.findByIdAndUpdate(req.payload._id, {
@@ -26,14 +26,18 @@ router.post("/api/create-post", async (req, res, next) => {
   }
 });
 
-router.post("/api/delete-post/:postId", async (req, res, next) => {
-  try {
-    const postId = req.params.postId;
-    await Post.findByIdAndRemove(postId);
-    res.status(200).send();
-  } catch (error) {
-    next(error);
+router.post(
+  "/api/delete-post/:postId",
+  isAuthenticated,
+  async (req, res, next) => {
+    try {
+      const postId = req.params.postId;
+      await Feed.findByIdAndRemove(postId);
+      res.status(200).send();
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 module.exports = router;

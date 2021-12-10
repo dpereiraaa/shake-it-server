@@ -63,7 +63,6 @@ router.post("/auth/signup", async (req, res, next) => {
       _id: createdUser._id,
       email: createdUser.email,
       name: createdUser.name,
-      image: createdUser.image,
     };
 
     // Send the response back

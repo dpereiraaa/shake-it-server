@@ -28,4 +28,18 @@ router.post(
   }
 );
 
+router.post(
+  "/api/delete-post-comment/:postId",
+  isAuthenticated,
+  async (req, res, next) => {
+    try {
+      const commentId = req.params.commentId;
+      await Comment.findByIdAndRemove(commentId);
+      res.status(200).send();
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 module.exports = router;
