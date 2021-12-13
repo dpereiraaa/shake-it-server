@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const feedpostSchema = new Schema(
   {
     title: { type: String, required: true },
-    picture: { type: String, required: true },
+    image: { type: String, required: true },
     description: { type: String, required: true },
     drink_hashtag: { type: String },
     post_author: { type: Schema.Types.ObjectId, ref: "User" },
