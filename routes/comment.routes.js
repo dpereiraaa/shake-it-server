@@ -17,6 +17,7 @@ router.post(
         comment_author: req.payload._id,
         comment_description,
       });
+      console.log("comment_author :>> ", comment_author);
 
       await Feed.findByIdAndUpdate(postId, {
         $push: { comments: comment._id },
