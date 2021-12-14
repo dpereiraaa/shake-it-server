@@ -7,7 +7,7 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 router.get("/api/allposts", isAuthenticated, async (req, res, next) => {
   try {
-    const allposts = await Feed.find({ sort: { createdAt: -1 } })
+    const allposts = await Feed.find()
       .populate({
         path: "post_author",
         model: "User",

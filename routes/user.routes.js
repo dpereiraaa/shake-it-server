@@ -25,11 +25,11 @@ router.put("/api/users/current", isAuthenticated, async (req, res, next) => {
     // req.payload holds the user info that was encoded in JWT during login.
 
     const currentUser = req.payload;
-    const { email, name } = req.body;
+    const { email, name, image, favorite_drinks } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
       currentUser._id,
-      { email, name },
+      { email, name, image, $push: { favorite_drinks } },
       { new: true }
     );
 
