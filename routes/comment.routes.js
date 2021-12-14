@@ -10,14 +10,14 @@ router.post(
   isAuthenticated,
   async (req, res, next) => {
     try {
-      const { comment_description } = req.body;
       const postId = req.params.postId;
+      console.log("postId :>> ", postId);
+      const { comment_description } = req.body;
 
       const comment = await Comment.create({
         comment_author: req.payload._id,
         comment_description,
       });
-      console.log("comment_author :>> ", comment_author);
 
       await Feed.findByIdAndUpdate(postId, {
         $push: { comments: comment._id },
