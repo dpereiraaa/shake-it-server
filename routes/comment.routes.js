@@ -11,7 +11,6 @@ router.post(
   async (req, res, next) => {
     try {
       const postId = req.params.postId;
-      console.log("postId :>> ", postId);
       const { comment_description } = req.body;
 
       const comment = await Comment.create({
