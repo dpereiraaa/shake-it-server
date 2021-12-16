@@ -30,6 +30,12 @@ router.put("/api/users/current", isAuthenticated, async (req, res, next) => {
     const currentUser = req.payload;
     const { email, name, image, favorite_drinks } = req.body;
 
+    const favoriteDrinkId = await User.findOne({ favorite_drinks });
+
+    if (favoriteDrinkId) {
+      return;
+    }
+
     const updatedUser = await User.findByIdAndUpdate(
       currentUser._id,
       { email, name, image, $push: { favorite_drinks } },
