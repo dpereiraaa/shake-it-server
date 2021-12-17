@@ -7,7 +7,7 @@ const userSchema = new Schema({
   name: { type: String, required: true },
   image: { type: String },
   user_posts: [{ type: Schema.Types.ObjectId, ref: "Feed" }],
-  favorite_drinks: [{ type: String, unique: true }],
+  favorite_drinks: [{ type: String }],
 });
 
 const User = model("User", userSchema);
